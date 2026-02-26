@@ -1,40 +1,44 @@
-*o::y
-*p::u
-*@::i
-*[::o
-*Enter::p
-*l::h
-*sc027::j
-*sc028::k
-*]::l
-*.::n
-*/::m
-*RShift::Send,{sc073}
+;右手をnumpad上に移動
+*Numpad4::n
+*NumpadLeft::n
+*Numpad5::m
+*NumpadClear::m
+*Numpad7::j
+*NumpadHome::j
+*Numpad8::k
+*NumpadUp::k
+*Numpad9::l
+*NumpadPgup::l
+*NumLock::u
+*Pause::u
+*NumpadDiv::i
+*NumpadMult::o
+*NumpadAdd::p
+*PgUp::y
+*PgDn::h
 
 ;長押しでshift、短押しでspace
-*RAlt::                        
-KeyWait, RAlt, T0.13
-If (ErrorLevel){   
-   Send,{Blind}{RShift DownTemp}
-   KeyWait,RAlt
-   Send,{Blind}{RShift Up}
-   return
-}else{                           
-   Send,{Blind}{Space}
-   KeyWait,RAlt        
-   return
+*Down::                        
+{
+   if KeyWait('Down', 'T0.13'){
+      Send '{Blind}{Space}'
+      KeyWait 'Down'
+   }else{
+      Send '{Blind}{RShift DownTemp}'
+      KeyWait 'Down'
+      Send '{Blind}{RShift Up}'
+   }
 }
-   
-;AppsKey長押しでコントロール、短押しでエンター
-*AppsKey::                        
-KeyWait, AppsKey, T0.13
-If (ErrorLevel){   
-   Send,{Blind}{Ctrl DownTemp}
-   KeyWait,AppsKey
-   Send,{Blind}{Ctrl Up}
-   return
-}else{                           
-   Send,{Blind}{Enter}
-   KeyWait,AppsKey        
-   return
+
+;長押しでコントロール、短押しでエンター
+*Right::                        
+{
+   if KeyWait('Right', 'T0.13'){
+      Send '{Blind}{Enter}'
+      KeyWait 'Right'
+   }else{
+      Send '{Blind}{RCtrl DownTemp}'
+      KeyWait 'Right'
+      Send '{Blind}{RCtrl Up}'
+   }
 }
